@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const TodoItem_1 = __importDefault(require("./TodoItem"));
+const TodoItem_1 = __importDefault(require("../model/TodoItem"));
 class TodoCollection {
     constructor(userName, todoItems = []) {
         this.userName = userName;
@@ -32,6 +32,12 @@ class TodoCollection {
                 this.itemMap.delete(item.id);
             }
         });
+    }
+    getItemCount() {
+        return {
+            total: this.itemMap.size,
+            incomplete: this.getTodoItems(false).length
+        };
     }
     // id를 톷ㅇ해 toDo를 찾아서 complete를 바꿔준다.
     markComplete(id, complete) {
